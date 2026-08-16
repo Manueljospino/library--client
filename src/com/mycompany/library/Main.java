@@ -1,5 +1,6 @@
 package com.mycompany.library;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -8,6 +9,7 @@ public class Main {
     static ArrayList<Customer> customers = new ArrayList<>();
     static Scanner enter = new Scanner(System.in);
     static ArrayList<Book> books = new ArrayList<>();
+    static ArrayList<Loan> loans = new ArrayList<>();
 
   public static void createCustomer (){
       System.out.println("====Registro de clientes=====");
@@ -198,6 +200,93 @@ public class Main {
         System.out.println("libro eliminado exitosamente!");
 
     }
+
+   //operations CRUD for Loan
+
+    public static Loan getLoan(String id) {
+        for (Loan l : loans) {
+            if (l.getId().equals(id)) {
+                return l;
+            }
+        }
+        return null;
+    }
+
+    public static void createLoan() {
+        System.out.println("===Registro de préstamos===");
+        System.out.println();
+
+        String id;
+        do {
+            System.out.print("Ingrese el id del préstamo: ");
+            id = enter.nextLine();
+            if (getLoan(id) != null) {
+                System.out.println("Ese id ya existe. Intente con otro.");
+            }
+        } while (getLoan(id) != null);
+
+        System.out.print("Ingrese el id del cliente: ");
+        String customerId = enter.nextLine();
+        Customer customer = getCustomer(customerId);
+        if (customer == null) {
+            System.out.println("Error.... el cliente no existe");
+            return;
+        }
+
+        System.out.print("Ingrese el código del libro: ");
+        String bookCode = enter.nextLine();
+        Book book = getBook(bookCode);
+        if (book == null) {
+            System.out.println("Error.... el libro no existe");
+            return;
+        }
+
+        LocalDate date = LocalDate.now();
+        String status = "Activo";
+
+        Loan loan = new Loan(id, customer, book, date, status);
+        loans.add(loan);
+        System.out.println("Préstamo registrado exitosamente!");
+        System.out.println();
+    }
+
+    public static void returnLoan() {
+        System.out.println("===Registrar devolución===");
+        System.out.println();
+
+        System.out.print("Ingrese el id del préstamo: ");
+        String id = enter.nextLine();
+
+        Loan loan = getLoan(id);
+        if (loan == null) {
+            System.out.println("Error.... el préstamo no existe");
+            return;
+        }
+
+        loan.setStatus("Devuelto");
+        System.out.println("Devolución registrada exitosamente!");
+        System.out.println();
+    }
+
+    public static void showActiveLoans() {
+        if (loans.isEmpty()) {
+            System.out.println("No hay préstamos registrados.");
+            return;
+        }
+
+        boolean hayActivos = false;
+        for (Loan l : loans) {
+            if (l.getStatus().equals("Activo")) {
+                System.out.println(l);
+                hayActivos = true;
+            }
+        }
+
+        if (!hayActivos) {
+            System.out.println("No hay préstamos activos.");
+        }
+    }
+
 
 
     public static void main(String[] args) {
