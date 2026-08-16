@@ -25,4 +25,13 @@ public class Book extends Item{
     public void setAvailable(boolean available) {
         this.available = available;
     }
+
+    @Override
+    public String toString() {
+        return "Código: " + getCode() +
+                ", Título: " + getTitle() +
+                ", Año: " + getPublicationYear() +
+                ", Autor: " + getAuthor() +
+                ", Disponible: " + (isAvailable() ? "Sí" : "No");
+    }
 }

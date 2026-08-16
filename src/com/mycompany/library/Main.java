@@ -124,6 +124,19 @@ public class Main {
 
     }
 
+    public static ArrayList<Book> getBooks() {
+      return books;
+    }
+
+    public static void ShowBooks(){
+        if(books.isEmpty()){
+            System.out.println("Error.. no hay libros registrados");
+            return;
+        }
+
+        books.forEach(System.out::println);
+    }
+
 
     public static void main(String[] args) {
 
