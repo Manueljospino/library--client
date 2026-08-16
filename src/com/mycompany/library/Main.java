@@ -250,6 +250,24 @@ public class Main {
         System.out.println();
     }
 
+    public static void returnLoan() {
+        System.out.println("===Registrar devolución===");
+        System.out.println();
+
+        System.out.print("Ingrese el id del préstamo: ");
+        String id = enter.nextLine();
+
+        Loan loan = getLoan(id);
+        if (loan == null) {
+            System.out.println("Error.... el préstamo no existe");
+            return;
+        }
+
+        loan.setStatus("Devuelto");
+        System.out.println("Devolución registrada exitosamente!");
+        System.out.println();
+    }
+
 
 
     public static void main(String[] args) {
