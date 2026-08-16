@@ -55,4 +55,13 @@ public class Loan {
         this.status = status;
     }
 
+    @Override
+    public String toString() {
+        return "Id: " + getId() +
+                ", Cliente: " + getCustomer().getName() +
+                ", Libro: " + getBook().getTitle() +
+                ", Fecha: " + getDate() +
+                ", Estado: " + getStatus();
+    }
+
 }

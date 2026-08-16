@@ -268,6 +268,25 @@ public class Main {
         System.out.println();
     }
 
+    public static void showActiveLoans() {
+        if (loans.isEmpty()) {
+            System.out.println("No hay préstamos registrados.");
+            return;
+        }
+
+        boolean hayActivos = false;
+        for (Loan l : loans) {
+            if (l.getStatus().equals("Activo")) {
+                System.out.println(l);
+                hayActivos = true;
+            }
+        }
+
+        if (!hayActivos) {
+            System.out.println("No hay préstamos activos.");
+        }
+    }
+
 
 
     public static void main(String[] args) {
