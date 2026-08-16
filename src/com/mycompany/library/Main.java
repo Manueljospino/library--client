@@ -137,6 +137,15 @@ public class Main {
         books.forEach(System.out::println);
     }
 
+    public static Book getBook(String code){
+        for(Book b : books){
+            if(b.getCode().equals(code)){
+                return b;
+            }
+        }
+        return null;
+    }
+
 
     public static void main(String[] args) {
 
