@@ -40,6 +40,16 @@ public class Main {
           customers.forEach(System.out::println);
         }
 
+       public static Customer getCustomer(String id){
+        for(Customer c : customers){
+            if(c.getId().equals(id)){
+                return c;
+            }
+        }
+        return null;
+
+       }
+
 
     public static void main(String[] args) {
 
