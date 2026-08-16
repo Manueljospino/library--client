@@ -8,7 +8,7 @@ public class Main {
     static ArrayList<Customer> customers = new ArrayList<>();
     static Scanner enter = new Scanner(System.in);
 
-  public static void createCustomers (){
+  public static void createCustomer (){
       System.out.println("====Registro de clientes=====");
       System.out.println();
       System.out.print("Id       :  ");
@@ -50,6 +50,31 @@ public class Main {
 
        }
 
+     public static void updateCustomer(){
+         System.out.println("===Actualizar cliente===");
+         System.out.println();
+         System.out.println("Ingrese el id del cliente: ");
+         String id = enter.nextLine();
+
+         Customer c = getCustomer(id);
+         if(c == null){
+             System.out.println("Error.... el cliente no existe");
+             return;
+         }
+
+         System.out.println("Ingrese el nombre del cliente: ");
+         String name = enter.nextLine();
+         System.out.println("Ingrese el telefono del cliente: ");
+         String phone = enter.nextLine();
+         System.out.println("Ingrese el correo del cliente: ");
+         String email = enter.nextLine();
+
+         c.setName(name);
+         c.setPhone(phone);
+         c.setEmail(email);
+
+         System.out.println("cliente actualizado exitosamente!");
+     }
 
     public static void main(String[] args) {
 
