@@ -1,6 +1,7 @@
 package com.mycompany.library;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -21,7 +22,24 @@ public class Main {
 
       Customer c = new  Customer(id,name,phone,email);
       customers.add(c);
+      System.out.println("Paciente registrado exitosamente!");
+      System.out.println();
+
   }
+
+      public static ArrayList<Customer> getCustomers() {
+        return customers;
+      }
+
+      public static void showCustomers(){
+           if(customers.isEmpty()){
+               System.out.println("Error.... lista vacía");
+               return;
+           }
+
+          customers.forEach(System.out::println);
+        }
+
 
     public static void main(String[] args) {
 

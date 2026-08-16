@@ -16,4 +16,10 @@ public class  Customer extends Person {
     public void setEmail(String email) {
         this.email = email;
     }
+
+
+    @Override
+    public String toString() {
+        return "Id: " + getId() + ", Nombre: " + getName() + ", Telefono: " + getPhone() + ", Email: " + getEmail();
+    }
 }
