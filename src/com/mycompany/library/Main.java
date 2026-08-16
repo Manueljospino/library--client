@@ -132,7 +132,7 @@ public class Main {
       return books;
     }
 
-    public static void ShowBooks(){
+    public static void showBooks(){
         if(books.isEmpty()){
             System.out.println("Error.. no hay libros registrados");
             return;
@@ -291,8 +291,66 @@ public class Main {
 
     public static void main(String[] args) {
 
+            int option;
+            do {
+                System.out.println("========================================");
+                System.out.println("   SISTEMA DE GESTIÓN DE BIBLIOTECA");
+                System.out.println("========================================");
+                System.out.println("--- Clientes ---");
+                System.out.println("1. Registrar cliente");
+                System.out.println("2. Listar clientes");
+                System.out.println("3. Buscar cliente");
+                System.out.println("4. Actualizar cliente");
+                System.out.println("5. Eliminar cliente");
+                System.out.println("--- Libros ---");
+                System.out.println("6. Registrar libro");
+                System.out.println("7. Listar libros");
+                System.out.println("8. Buscar libro");
+                System.out.println("9. Actualizar libro");
+                System.out.println("10. Eliminar libro");
+                System.out.println("--- Préstamos ---");
+                System.out.println("11. Registrar préstamo");
+                System.out.println("12. Registrar devolución");
+                System.out.println("13. Listar préstamos activos");
+                System.out.println("--- Otros ---");
+                System.out.println("0. Salir");
+                System.out.print("Seleccione una opción: ");
 
-    }
+                option = Integer.parseInt(enter.nextLine());
+
+                switch (option) {
+                    case 1 -> createCustomer();
+                    case 2 -> showCustomers();
+                    case 3 -> {
+                        System.out.print("Ingrese el id del cliente a buscar: ");
+                        String id = enter.nextLine();
+                        Customer c = getCustomer(id);
+                        System.out.println(c != null ? c : "Cliente no encontrado.");
+                    }
+                    case 4 -> updateCustomer();
+                    case 5 -> deleteCustomer();
+                    case 6 -> createBook();
+                    case 7 -> showBooks();
+                    case 8 -> {
+                        System.out.print("Ingrese el código del libro a buscar: ");
+                        String code = enter.nextLine();
+                        Book b = getBook(code);
+                        System.out.println(b != null ? b : "Libro no encontrado.");
+                    }
+                    case 9 -> updateBook();
+                    case 10 -> deleteBook();
+                    case 11 -> createLoan();
+                    case 12 -> returnLoan();
+                    case 13 -> showActiveLoans();
+                    case 0 -> System.out.println("Saliendo del sistema...");
+                    default -> System.out.println("Opción inválida.");
+                }
+                System.out.println();
+
+            } while (option != 0);
+        }
+
+
 
 
 
