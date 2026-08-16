@@ -76,6 +76,21 @@ public class Main {
          System.out.println("cliente actualizado exitosamente!");
      }
 
+     public static void deleteCustomer(){
+         System.out.println("===Eliminar cliente===");
+         System.out.println();
+         System.out.println("Ingrese el id del cliente: ");
+         String id = enter.nextLine();
+         Customer c = getCustomer(id);
+         if(c == null){
+             System.out.println("Error.... el cliente no existe");
+             return;
+         }
+         customers.remove(c);
+         System.out.println("cliente eliminado exitosamente!");
+
+     }
+
     public static void main(String[] args) {
 
 
