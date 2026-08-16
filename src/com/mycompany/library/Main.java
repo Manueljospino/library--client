@@ -93,6 +93,8 @@ public class Main {
      }
 
 
+
+  // operation CRUD for Book
     public static void createBook () {
         System.out.println("====Registro de libros=====");
         System.out.println();
@@ -180,6 +182,21 @@ public class Main {
         b.setPublicationYear(publicationYear);
         b.setTitle(title);
         System.out.println("Libro actualizado exitosamente!");
+    }
+
+    public static void deleteBook(){
+        System.out.println("===Eliminar libro===");
+        System.out.println();
+        System.out.println("Ingrese el código del libro: ");
+        String code = enter.nextLine();
+        Book b = getBook(code);
+        if(b == null){
+            System.out.println("Error.... el libro no existe");
+            return;
+        }
+        books.remove(b);
+        System.out.println("libro eliminado exitosamente!");
+
     }
 
 
