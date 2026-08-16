@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class Main {
     static ArrayList<Customer> customers = new ArrayList<>();
     static Scanner enter = new Scanner(System.in);
+    static ArrayList<Book> books = new ArrayList<>();
 
   public static void createCustomer (){
       System.out.println("====Registro de clientes=====");
@@ -17,7 +18,7 @@ public class Main {
       String name = enter.nextLine();
       System.out.print("Teléfono :  ");
       String phone = enter.nextLine();
-      System.out.println("Correo:   ");
+      System.out.print("Correo:   ");
       String email = enter.nextLine();
 
       Customer c = new  Customer(id,name,phone,email);
@@ -90,6 +91,114 @@ public class Main {
          System.out.println("cliente eliminado exitosamente!");
 
      }
+
+
+
+  // operation CRUD for Book
+    public static void createBook () {
+        System.out.println("====Registro de libros=====");
+        System.out.println();
+        System.out.print("Código                     :  ");
+        String code = enter.nextLine();
+        System.out.print("Título                     :  ");
+        String title = enter.nextLine();
+        System.out.print("Año en el que se publicó   :  ");
+        int publicationYear = enter.nextInt();
+        enter.nextLine();
+        System.out.print("Autor                      :   ");
+        String author = enter.nextLine();
+        String availableInput;
+        do {
+            System.out.println("Disponible si o no? (S/N): ");
+            availableInput = enter.nextLine().toUpperCase();
+            if (!availableInput.equals("S") && !availableInput.equals("N")) {
+                System.out.println("Respuesta inválida. Escriba S o N.");
+            }
+
+
+        } while (!availableInput.equals("S") && !availableInput.equals("N"));
+        boolean available = availableInput.equals("S");
+
+        Book b = new Book(code, title, publicationYear, author, available);
+        books.add(b);
+        System.out.println("Libro registrado exitosamente!");
+        System.out.println();
+
+    }
+
+    public static ArrayList<Book> getBooks() {
+      return books;
+    }
+
+    public static void ShowBooks(){
+        if(books.isEmpty()){
+            System.out.println("Error.. no hay libros registrados");
+            return;
+        }
+
+        books.forEach(System.out::println);
+    }
+
+    public static Book getBook(String code){
+        for(Book b : books){
+            if(b.getCode().equals(code)){
+                return b;
+            }
+        }
+        return null;
+    }
+
+    public static void updateBook(){
+        System.out.println("===Actualizar Libro===");
+        System.out.println();
+        System.out.println("Ingrese el codigo del libro: ");
+        String code = enter.nextLine();
+
+        Book b = getBook(code);
+        if(b == null){
+            System.out.println("Error.... el libro no existe");
+            return;
+        }
+
+        System.out.println("Ingrese el titulo del libro: ");
+        String title = enter.nextLine();
+        System.out.println("Ingrese el Año en el que se publicó : ");
+        int publicationYear = enter.nextInt();
+        enter.nextLine();
+        System.out.print("Ingrese el autor:   ");
+        String author = enter.nextLine();
+        String availableInput;
+        do {
+            System.out.println("Disponible si o no? (S/N): ");
+            availableInput = enter.nextLine().toUpperCase();
+            if (!availableInput.equals("S") && !availableInput.equals("N")) {
+                System.out.println("Respuesta inválida. Escriba S o N.");
+            }
+        } while (!availableInput.equals("S") && !availableInput.equals("N"));
+        boolean available = availableInput.equals("S");
+
+        b.setAuthor(author);
+        b.setAvailable(available);
+        b.setPublicationYear(publicationYear);
+        b.setTitle(title);
+        System.out.println("Libro actualizado exitosamente!");
+    }
+
+    public static void deleteBook(){
+        System.out.println("===Eliminar libro===");
+        System.out.println();
+        System.out.println("Ingrese el código del libro: ");
+        String code = enter.nextLine();
+        Book b = getBook(code);
+        if(b == null){
+            System.out.println("Error.... el libro no existe");
+            return;
+        }
+        books.remove(b);
+        System.out.println("libro eliminado exitosamente!");
+
+    }
+
 
     public static void main(String[] args) {
 
