@@ -1,3 +1,5 @@
+package com.mycompany.library;
+
 public class  Customer extends Person {
 
     private String email;
